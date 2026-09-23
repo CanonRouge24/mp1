@@ -1,0 +1,96 @@
+@use 'theme-colors';
+@use 'variables';
+@use 'sass:math';
+
+
+footer
+{
+  height: fit-content;
+}
+
+#footer-container
+{
+  @include theme-colors.green;
+
+  color: white;
+
+  @extend %flex-main-centered;
+  @extend %flex-cross-centered;
+  flex-direction: column;
+
+  font-family: variables.$roboto;
+  font-size: variables.$small-font-size;
+
+  padding: variables.$centering-padding;
+
+  width: 100%;
+}
+
+#footer-columns
+{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 2rem;
+
+  min-width: 50%;
+  max-width: 75%;
+  min-height: 2rem;
+
+  text-align: center;
+
+  .footer-column-title
+  {
+    font-size: variables.$footer-title-font-size;
+
+    text-decoration: underline;
+
+    margin-bottom: 0.5rem;
+  }
+}
+
+#icons-list
+{
+  list-style: none;
+
+  @extend %flex-main-centered;
+  @extend %flex-cross-centered;
+
+
+  .icon-link
+  {
+    border: 2px solid white;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    @extend %flex-main-centered;
+    @extend %flex-cross-centered;
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    margin: 0 0.125rem;
+
+    .icon-item
+    {
+      @extend %flex-main-centered;
+      @extend %flex-cross-centered;
+
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+  }
+
+  .icon-link:hover
+  {
+    @include theme-colors.orange;
+  }
+
+  svg
+  {
+    // transform: scale(400%);
+  }
+}

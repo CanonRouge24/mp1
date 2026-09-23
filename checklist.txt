@@ -1,0 +1,66 @@
+[x] (10.) hero image
+[ ] (11.) modal
+[ ] (12.) <video> embedded in page
+[x] (13.) Use at least some SCSS features
+[x] (14.) CSS animation somewhere (fade, transition, color shifts)
+[x] (15.) SVG icon somewhere
+[x] (16.) social media icon
+[x] (2.) sticky top navbar
+  [ ] (4.) navbar shrinks in some way when scrolling down the page, but remains sticky!
+    [ ] (4.) text size of navbar shrinks when the navbar does!
+  [ ] (5.) smooth scrolling using the navbar buttons
+[ ] (6.) carousel
+  [ ] (6.) clickable arrows for carousel
+[x] (7.) section with multi-column content (the carousel doesn't count)
+[x] (8.) horizontally centered stuff (one item vertically centered, can probably just be something in the hero)
+[x] (1.) header and footer, single-page application only
+[ ] (9.) responsiveness, no big problems with sizes:
+  [ ] 1920x1080
+  [ ] 1366x768
+  [ ] 1280x720
+  [ ] 1024x768
+  [ ] 768x1024
+
+# Notes
+
+Design inspiration:
+https://www.figma.com/community/file/1408441048826723944/bentolio-portfolio-design-template
+
+Tetradic colorscheme created using coolors.co
+
+Navbar tutorial:
+https://www.aleksandrhovhannisyan.com/blog/responsive-navbar-tutorial/#responsive-navbar-html
+
+Icon SVGs from fontawesome:
+Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.
+
+Khan Academy logo from:
+https://zonalogo.com/khan-academy-logo-png-svg
+and edited with:
+boxy-svg.com
+
+w3schools tutotials for various of the HTML-CSS elements
+and the hero darkening rgb linear-gradient:
+https://www.w3schools.com/howto/howto_css_hero_image.asp
+
+modal tutorial:
+https://webdesign.tutsplus.com/how-to-build-flexible-modal-dialogs-with-html-css-and-javascript--cms-33500t
+I can improve it later.
+
+
+# What I've learned
+* A little bit of "industry standard css good practice"
+* SCSS syntax and functionality
+* color-mix (and its syntactical sugar "from color literal syntax", which is apparently not supported by the css tech stack in this project)
+* a little bit about aria accessibility features
+* css transforms
+* responsive webpages
+  * document.mediaQuery
+  * how easy the gap property makes spacing stuff
+
+What I already knew
+* HTML semantic elements
+* grid and flexbox
+* CSS
+* Javascript DOM interactions
+* ES6 syntax

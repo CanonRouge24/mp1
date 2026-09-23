@@ -8,6 +8,14 @@ import './index.html';
 
 // Stylesheets
 import './css/main.scss';
+import './css/theme-colors.scss';
+import './css/variables.scss';
+import './css/navbar.scss';
+import './css/main-content.scss';
+import './css/footer.scss';
 
 // Scripts
 import './js/main.js';
+import './js/navbar-menu.js';
+import './js/video-modal.js';
+import './js/carousel.js';

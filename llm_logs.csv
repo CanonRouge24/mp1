@@ -1,2 +1,23 @@
-example_chatgpt_log_link1
-example_bing_chat_log_link2
+Deepseek:
+How can I make a background-color transition instant (i.e. just change the color to a different one without the transition happening) between @media size queries but still let the transitions happen normally (say, on hover)?
+
+The code block it generated.
+```javascript
+const mq = window.matchMedia('(min-width: 768px)');
+const boxes = document.querySelectorAll('.box');
+
+function disableTransition() {
+  boxes.forEach(el => el.classList.add('no-transition'));
+  // force reflow so the class takes effect before re-enabling
+  void document.body.offsetWidth;
+  requestAnimationFrame(() => {
+    boxes.forEach(el => el.classList.remove('no-transition'));
+  });
+}
+
+mq.addEventListener('change', disableTransition);
+```
+
+A couple of google queries for various css properties and such (scrollbar-styling),
+about half of which resulted in looking at the MDN docs and half of which resulted in whatever Google search AI generated,
+which was probably from Stack Overflow. I also looked at SO for a question about how to use SASS math (@use 'sass:math')

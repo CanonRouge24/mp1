@@ -1,1 +1,40 @@
 /* Your SCSS here. */
+@use 'theme-colors';
+
+html
+{
+  scrollbar-gutter: stable;
+  scrollbar-color: theme-colors.$honey-bronze lightgray;
+  scrollbar-width: 1rem;
+}
+
+@media screen and (max-width: 768px)
+{
+  html, body, :root
+  {
+    font-size: 12px;
+  }
+}
+
+
+*,
+*::before,
+*::after
+{
+  // The sizes (width, height) now include the padding and border, instead of just the content
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
+
+body
+{
+  min-height: 100%;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  overflow: hidden auto;
+}
+

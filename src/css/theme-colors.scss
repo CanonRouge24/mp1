@@ -1,0 +1,40 @@
+@use 'sass:color';
+
+$honey-bronze: #f0b450;
+$neon-violet: #b651f0;
+$blue-energy: #518cf0;
+$willow-green: #93d46d;
+
+@mixin orange($opacity : 1, $mix: 100%)
+{
+  background: rgba(
+    color.mix($honey-bronze, $blue-energy, $mix),
+    $opacity
+  );
+}
+
+@mixin violet($opacity: 1, $mix: 100%)
+{
+  background: rgba(
+    color.mix($neon-violet, white, $mix),
+    $opacity
+  );
+}
+
+@mixin blue($opacity: 1, $mix: 100%)
+{
+  background: rgba(
+    color.mix($blue-energy, black, $mix),
+    $opacity
+  );
+}
+
+@mixin blue-text($mix: 100%)
+{
+  color: color.mix($blue-energy, white, $mix);
+}
+
+@mixin green
+{
+  background: $willow-green;
+}

@@ -1,0 +1,266 @@
+@use 'theme-colors';
+@use 'variables';
+@use 'sass:math';
+
+
+header
+{
+  position: sticky;
+  top: 0;
+}
+
+
+#navbar-container
+{
+  color: white;
+
+  @extend %flex-cross-centered;
+  justify-content: space-between;
+
+  padding: variables.$centering-padding;
+
+  height: variables.$navbar-height;
+  width: 100%;
+}
+
+
+#navbar-color
+{
+  @include theme-colors.orange;
+
+  width: 100%;
+  height: variables.$navbar-height;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#name
+{
+  font-family: variables.$inter;
+  line-height: variables.$navbar-line-height;
+
+  text-wrap: nowrap;
+
+  z-index: 1;
+}
+
+#irlname
+{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: variables.$big-font-size;
+}
+
+#username
+{
+  @include theme-colors.blue;
+  border-radius: variables.$small-radius;
+  @extend #irlname;
+
+  font-family: monospace;
+  font-size: variables.$small-font-size;
+
+  padding: 0 variables.$small-centering-padding;
+}
+
+#navbar-toggle
+{
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  @extend %flex-main-centered;
+  @extend %flex-cross-centered;
+  flex-direction: column;
+
+  height: variables.$navbar-line-height;
+  width:  variables.$navbar-line-height;
+
+  z-index: 1;
+}
+
+#navbar-toggle > .icon-bar
+{
+  background: white;
+
+  display: block;
+
+  height: math.div(1, 6) * 100%;
+  width:  100%;
+  margin: math.div(1, 12) * 100%;
+
+  transition-behavior: allow-discrete;
+  transition-duration: variables.$hamburger-transition-duration;
+  transition-property: background, opacity, transform, visibility, width;
+}
+
+#navbar-toggle:hover > .icon-bar
+{
+  @include theme-colors.blue;
+  visibility: visible;
+}
+
+#navbar-toggle[aria-expanded="true"]
+{
+  > .icon-bar:first-child
+  {
+    width: 115%;
+    transform: translate(0, math.div(1, 3) * variables.$navbar-line-height)
+               rotate(45deg);
+  }
+
+  > .icon-bar:nth-child(2)
+  {
+    opacity: 0;
+    transform: translate(-100%, 0);
+    visibility: hidden;
+
+    // Make bar unclickable while it's moving since it leaves the #navbar-toggle box
+    pointer-events: none;
+  }
+
+  > .icon-bar:last-child
+  {
+    width: 115%;
+    transform: translate(0, math.div(-1, 3) * variables.$navbar-line-height)
+               rotate(-45deg);
+  }
+}
+
+#navbar-menu
+{
+  background-color: #0004;
+  backdrop-filter: blur(1px);
+
+  height: fit-content;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: variables.$navbar-height;
+
+  transition-duration: variables.$navbar-menu-transition-duration;
+  transition-property: top, bottom;
+  transition-timing-function: ease;
+
+  z-index: -1;
+}
+
+#navbar-toggle[aria-expanded="false"]
+{
+  + #navbar-menu
+  {
+    top: -100vh;
+    bottom: 0;
+
+    transition-timing-function: ease-in;
+  }
+}
+
+#navbar-links
+{
+  @extend %flex-main-centered;
+  flex-direction: column;
+
+  padding: variables.$centering-padding;
+  list-style: none;
+
+  .navbar-link.no-transition
+  {
+    transition: none;
+  }
+
+  .navbar-link
+  {
+    @include theme-colors.violet($opacity: 0.9, $mix: 100%);
+
+    border-radius: variables.$big-radius;
+
+    box-shadow: 0 0 1rem theme-colors.$neon-violet;
+
+    cursor: pointer;
+
+    @extend %flex-main-centered;
+    @extend %flex-cross-centered;
+
+    font-family: variables.$inter;
+    font-size: variables.$medium-font-size;
+
+    transition: background variables.$navbar-menu-transition-duration;
+
+    padding: 1rem;
+    margin: 0.1rem;
+  }
+
+  .navbar-link:hover
+  {
+    @include theme-colors.violet($opacity: 0.9, $mix: 75%);
+  }
+}
+
+
+@media screen and (min-width: 768px)
+{
+  #navbar-toggle,
+  #navbar-toggle[aria-expanded="true"]
+  {
+    display: none;
+    visibility: hidden;
+  }
+
+  #navbar-menu,
+  #navbar-toggle[aria-expanded="true"] + #navbar-menu
+  {
+    background: none;
+
+    display: block;
+
+    position: static;
+    height: variables.$navbar-height;
+
+    opacity: 1;
+    visibility: visible;
+
+    z-index: 0;
+  }
+
+  #navbar-links
+  {
+    flex-direction: row;
+
+    height: 100%;
+
+    padding: 0;
+
+    .navbar-link.no-transition
+    {
+      transition: none !important;
+    }
+
+    .navbar-link
+    {
+      border-radius: 0;
+
+      box-shadow: none;
+
+      height: 100%;
+
+      padding: 0 1rem;
+      margin: 0;
+
+      transition: variables.$hamburger-transition-duration background;
+      @include theme-colors.orange;
+    }
+
+    .navbar-link:hover
+    {
+      @include theme-colors.orange($mix: 75%);
+    }
+  }
+}
+

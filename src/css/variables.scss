@@ -1,0 +1,36 @@
+$big-radius: 0.8rem;
+$small-radius: 0.25rem;
+
+$heroic-font-size: 4rem;
+$video-modal-font-size: 3rem;
+$big-font-size: 2rem;
+$medium-font-size: 1.25rem;
+$normal-font-size: 1rem;
+$footer-title-font-size: 0.8rem;
+$small-font-size: 0.65rem;
+
+$inter: Inter, sans-serif;
+$roboto: Roboto, sans-serif;
+
+$navbar-height: 3rem;
+$navbar-line-height: 2rem;
+
+$hamburger-transition-duration: 0.5s;
+$navbar-menu-transition-duration: 1s;
+$modal-expand-transition-duration: 1.5s;
+$carousel-sliding-transition-duration: 1s;
+
+$centering-padding: 1rem;
+$small-centering-padding: 0.5rem;
+
+%flex-main-centered
+{
+  display: flex;
+  justify-content: center;
+}
+
+%flex-cross-centered
+{
+  display: flex;
+  align-items: center;
+}
