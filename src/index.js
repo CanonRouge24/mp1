@@ -12,6 +12,7 @@ import './css/theme-colors.scss';
 import './css/variables.scss';
 import './css/navbar.scss';
 import './css/main-content.scss';
+import './css/contact.scss';
 import './css/footer.scss';
 
 // Scripts

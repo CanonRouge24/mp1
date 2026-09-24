@@ -3,31 +3,11 @@ const left = document.getElementById("carousel-left"),
 
       slider = document.getElementById("carousel-slider");
 
-slider.style.transform = "translate(-33%)";
+const SLIDER_TRANSLATIONS = [
+  31, -33, -89
+];
 
-right.addEventListener(
-  "click",
-  () =>
-  {
-    const { classList } = slider;
-
-    switch (true)
-    {
-      case classList.contains("two"):
-        slider.style.transform = "none";
-        slider.style.transform = "translate(-89%)";
-        classList.remove("two");
-        break;
-
-      case classList.contains("three"):
-        slider.style.transform = "none";
-        slider.style.transform = "translate(-33%)";
-        classList.remove("three");
-        classList.add("two");
-        break;
-    }
-  }
-);
+slider.style.transform = `translate(${SLIDER_TRANSLATIONS[1]}%)`;
 
 left.addEventListener(
   "click",
@@ -37,19 +17,43 @@ left.addEventListener(
 
     switch (true)
     {
+      case classList.contains("two"):
+        slider.style.transform = "none";
+        slider.style.transform = `translate(${SLIDER_TRANSLATIONS[0]}%)`;
+        classList.remove("two");
+        break;
+
+      case classList.contains("three"):
+        slider.style.transform = "none";
+        slider.style.transform = `translate(${SLIDER_TRANSLATIONS[1]}%)`;
+        classList.remove("three");
+        classList.add("two");
+        break;
+    }
+  }
+);
+
+right.addEventListener(
+  "click",
+  () =>
+  {
+    const { classList } = slider;
+
+    switch (true)
+    {
       case !classList.contains("two") && !classList.contains("three"):
         slider.style.transform = "none";
-        slider.style.transform = "translate(-33%)";
+        slider.style.transform = `translate(${SLIDER_TRANSLATIONS[1]}%)`;
         classList.add("two");
         break;
 
       case classList.contains("two"):
         slider.style.transform = "none";
-        slider.style.transform = "translate(31%)";
-        classList.remove("two");
+        slider.style.transform = `translate(${SLIDER_TRANSLATIONS[2]}%)`;
         classList.add("three");
-        console.log("here");
+        classList.remove("two");
         break;
     }
   }
 );
+

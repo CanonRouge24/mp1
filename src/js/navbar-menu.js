@@ -44,3 +44,14 @@ mobileToggle.addEventListener(
   "change",
   disableTransition
 );
+
+for (const link of links)
+{
+  link.addEventListener(
+    "click",
+    function ()
+    {
+      console.log(document.getElementById(this.dataset.target));
+    }
+  );
+}

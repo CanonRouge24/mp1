@@ -8,14 +8,29 @@ html
   scrollbar-width: 1rem;
 }
 
-@media screen and (max-width: 768px)
+@media screen and (min-width: 600px) and (max-width: 800px)
 {
-  html, body, :root
+  :root
   {
-    font-size: 12px;
+    font-size: 60%;
   }
 }
 
+@media screen and (min-width: 801px) and (max-width: 1000px)
+{
+  :root
+  {
+    font-size: 80%;
+  }
+}
+
+@media screen and (min-width: 1001px)
+{
+  :root
+  {
+    font-size: 100%;
+  }
+}
 
 *,
 *::before,
@@ -30,6 +45,8 @@ html
 
 body
 {
+  background-color: white;
+
   min-height: 100%;
 
   display: grid;

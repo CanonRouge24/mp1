@@ -1,6 +1,6 @@
 [x] (10.) hero image
-[ ] (11.) modal
-[ ] (12.) <video> embedded in page
+[x] (11.) modal
+[x] (12.) <video> embedded in page
 [x] (13.) Use at least some SCSS features
 [x] (14.) CSS animation somewhere (fade, transition, color shifts)
 [x] (15.) SVG icon somewhere
@@ -9,17 +9,17 @@
   [ ] (4.) navbar shrinks in some way when scrolling down the page, but remains sticky!
     [ ] (4.) text size of navbar shrinks when the navbar does!
   [ ] (5.) smooth scrolling using the navbar buttons
-[ ] (6.) carousel
-  [ ] (6.) clickable arrows for carousel
+[x] (6.) carousel
+  [x] (6.) clickable arrows for carousel
 [x] (7.) section with multi-column content (the carousel doesn't count)
 [x] (8.) horizontally centered stuff (one item vertically centered, can probably just be something in the hero)
 [x] (1.) header and footer, single-page application only
 [ ] (9.) responsiveness, no big problems with sizes:
-  [ ] 1920x1080
-  [ ] 1366x768
-  [ ] 1280x720
-  [ ] 1024x768
-  [ ] 768x1024
+  [x] 1920x1080
+  [x] 1366x768
+  [x] 1280x720
+  [x] 1024x768
+  [x] 768x1024
 
 # Notes
 

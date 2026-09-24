@@ -1,0 +1,27 @@
+@use 'theme-colors';
+@use 'variables';
+
+#contact-container
+{
+  font-family: variables.$roboto;
+  font-size: variables.$normal-font-size;
+
+  padding: variables.$centering-padding;
+
+  width: 100%;
+
+  > h1
+  {
+    text-align: center;
+    font-size: variables.$big-font-size;
+
+    padding: 1rem 0;
+  }
+}
+
+#contact-body
+{
+  @extend %flex-main-centered;
+  @extend %flex-cross-centered;
+  flex-direction: column;
+}

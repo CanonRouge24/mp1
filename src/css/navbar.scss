@@ -7,6 +7,8 @@ header
 {
   position: sticky;
   top: 0;
+
+  z-index: 3;
 }
 
 
@@ -179,9 +181,12 @@ header
   {
     @include theme-colors.violet($opacity: 0.9, $mix: 100%);
 
+    border: none;
     border-radius: variables.$big-radius;
 
     box-shadow: 0 0 1rem theme-colors.$neon-violet;
+
+    color: white;
 
     cursor: pointer;
 
@@ -191,7 +196,11 @@ header
     font-family: variables.$inter;
     font-size: variables.$medium-font-size;
 
+    text-decoration: none;
+
     transition: background variables.$navbar-menu-transition-duration;
+
+    outline: none;
 
     padding: 1rem;
     margin: 0.1rem;

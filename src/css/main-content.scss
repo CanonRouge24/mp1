@@ -9,6 +9,13 @@
   padding: variables.$centering-padding;
 
   width: 100%;
+
+  > h1
+  {
+    text-align: center;
+    font-size: variables.$big-font-size;
+    padding: 1rem 0;
+  }
 }
 
 #hero-image
@@ -108,80 +115,120 @@
     grid-row: 5 / 9;
     grid-column: 5 / 9;
 
-    #video-button
+    #video-thumbnail
     {
-      border: none;
-
       cursor: pointer;
 
-      height: 100%;
+      position: relative;
+
       width: 100%;
+      height: 100%;
 
-      outline: none;
+      transform-origin: top left;
+      transition: variables.$modal-expand-transition-duration transform 0s ease;
 
-      img
-      {
-        width: 100%;
-        height: 100%;
-      }
+      z-index: 1;
     }
 
     #modal-content
     {
-      background: #0008;
-
-      @extend %flex-main-centered;
-      @extend %flex-cross-centered;
-      flex-direction: column;
-      gap: 2rem;
-
-      height: 100%;
-      width: 100%;
-
-      opacity: 0;
-      visibility: hidden;
-
-      padding: variables.$centering-padding;
-
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
 
-      transform-origin: center 65%;
-      transform: scale(0.475);
+      width: 100%;
+      height: 100%;
+
+      padding: variables.$centering-padding;
+
+      justify-content: space-around;
+      @extend %flex-cross-centered;
+      flex-direction: column;
+
+      opacity: 1;
+      z-index: -1;
+      display: none;
 
       transition-behavior: allow-discrete;
-      transition: all variables.$modal-expand-transition-duration ease-out;
+      transition-property: background-color, display;
 
       #modal-header
       {
-        @include theme-colors.violet($opacity: 0.9);
+        @include theme-colors.violet;
 
+        max-width: 65%;
+
+        padding: 0 variables.$small-centering-padding;
+
+        font-family: variables.$inter;
         font-size: variables.$video-modal-font-size;
 
-        padding: variables.$small-centering-padding;
+        opacity: 0;
+
+        transition-property: opacity;
       }
 
       #modal-video
       {
-        position: relative;
-        top: 0;
-        left: 0;
+        width: 65%;
 
-        max-height: 75%;
+        opacity: 0;
 
-        cursor: default;
+        transition-property: opacity, transform;
       }
     }
 
-    #modal-content.is-visible
+    #modal-content.fade-in
     {
-      opacity: 1;
-      visibility: visible;
+      background-color: #0008;
+      display: flex;
 
-      transform: scale(1);
+      z-index: 2;
+
+      transition-duration: variables.$modal-fade-transition-duration;
+      transition-delay: variables.$modal-expand-transition-duration;
+
+      #modal-header,
+      #modal-video
+      {
+        opacity: 1;
+
+        transition-duration: inherit;
+        transition-delay: inherit;
+      }
+
+      ~ #video-thumbnail
+      {
+        transition-duration: variables.$modal-expand-transition-duration;
+        transition-delay: 0s;
+      }
+    }
+
+    #modal-content.fade-out
+    {
+      background-color: #0000;
+      display: none;
+
+      z-index: 2;
+
+      transition-duration: variables.$modal-fade-transition-duration;
+      transition-delay: 0s;
+
+      #modal-header,
+      #modal-video
+      {
+        opacity: 0;
+
+        transition-duration: inherit;
+        transition-delay: inherit;
+      }
+
+      ~ #video-thumbnail
+      {
+        transition-duration: variables.$modal-expand-transition-duration;
+        transition-delay: variables.$modal-fade-transition-duration;
+      }
     }
   }
 
@@ -227,7 +274,8 @@
         height: 100%;
 
         transition: transform variables.$carousel-sliding-transition-duration;
-        // transform: translate(-89%);
+
+        z-index: 0;
       }
 
       img
@@ -256,6 +304,12 @@
       @include theme-colors.blue-text($mix: 50%);
     }
   }
-
 }
 
+@media screen and (max-width: 768px)
+{
+  #modal-header
+  {
+    font-size: calc(variables.$video-modal-font-size / 2);
+  }
+}

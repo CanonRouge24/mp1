@@ -32,8 +32,9 @@
 
           <div id="navbar-menu">
             <ul id="navbar-links">
-              <a class="navbar-link"><li class="navbar-item">About</li></a>
-              <a class="navbar-link"><li class="navbar-item">Contact</li></a>
+              <button class="navbar-link" data-target="hero-image"><li class="navbar-item">Top</li></button>
+              <button class="navbar-link" data-target="content-container"><li class="navbar-item">About</li></button>
+              <button class="navbar-link" data-target="contact-container"><li class="navbar-item">Contact</li></button>
             </ul>
           </div>
         </nav>
@@ -45,6 +46,7 @@
         </div>
 
         <div id="content-container">
+          <h1>About</h1>
           <div id="about-grid">
             <div id="call-to-action" class="about-grid-cell">
               <h1>Text</h1>
@@ -62,14 +64,13 @@
 
             <div id="video" class="about-grid-cell">
               <h1>Random Clip I Have On My PC</h1>
-              <button id="video-button">
-                <img src="./assets/goldcier-thumbnail.png" />
-              </button>
 
               <div id="modal-content">
                 <h1 id="modal-header">Random Clip I Have On My PC</h1>
                 <video id="modal-video" controls loop muted src="./assets/goldcierow.mp4"></video>
               </div>
+
+              <img id="video-thumbnail" src="./assets/goldcier-thumbnail.png" />
             </div>
 
             <div id="carousel" class="about-grid-cell">
@@ -89,6 +90,14 @@
                 &gt;
               </div>
             </div>
+          </div>
+        </div>
+
+        <div id="contact-container">
+          <h1>Contact</h1>
+
+          <div id="contact-body">
+            <p>Sorry, I have nothing to put here...</p>
           </div>
         </div>
       </main>
