@@ -48,6 +48,8 @@
 
 #about-grid
 {
+  color: white;
+
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(8, 1fr);
@@ -58,7 +60,7 @@
 
   .about-grid-cell
   {
-    @include theme-colors.violet($opacity: 0.25);
+    @include theme-colors.violet($opacity: 0.75);
 
     border-radius: variables.$big-radius;
 
@@ -85,6 +87,8 @@
   {
     grid-row: 1 / 5;
     grid-column: 1 / 6;
+
+    text-align: center;
   }
 
   #portrait
@@ -94,7 +98,7 @@
 
     img
     {
-      height: 100%;
+      height: 80%;
     }
   }
 
@@ -102,12 +106,50 @@
   {
     grid-row: 1 / 7;
     grid-column: 9 / 13;
+
+    ul
+    {
+      list-style-type: disclosure-closed;
+
+      ul
+      {
+        margin-left: 1rem;
+        list-style-type: disclosure-open;
+      }
+    }
   }
 
   #description
   {
     grid-row: 5 / 9;
     grid-column: 1 / 5;
+
+    display: flex;
+    @extend %flex-main-centered;
+    @extend %flex-cross-centered;
+    flex-direction: column;
+
+    height: 100%;
+
+    text-align: center;
+
+    #languages
+    {
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+
+      align-items: center;
+      justify-content: center;
+
+      img
+      {
+        width: 100%;
+        height: fit-content;
+      }
+    }
   }
 
   #video

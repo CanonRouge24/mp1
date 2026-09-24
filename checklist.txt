@@ -8,13 +8,13 @@
 [x] (2.) sticky top navbar
   [ ] (4.) navbar shrinks in some way when scrolling down the page, but remains sticky!
     [ ] (4.) text size of navbar shrinks when the navbar does!
-  [ ] (5.) smooth scrolling using the navbar buttons
+  [x] (5.) smooth scrolling using the navbar buttons
 [x] (6.) carousel
   [x] (6.) clickable arrows for carousel
 [x] (7.) section with multi-column content (the carousel doesn't count)
 [x] (8.) horizontally centered stuff (one item vertically centered, can probably just be something in the hero)
 [x] (1.) header and footer, single-page application only
-[ ] (9.) responsiveness, no big problems with sizes:
+[x] (9.) responsiveness, no big problems with sizes:
   [x] 1920x1080
   [x] 1366x768
   [x] 1280x720

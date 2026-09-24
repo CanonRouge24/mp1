@@ -21,10 +21,33 @@ header
 
   padding: variables.$centering-padding;
 
-  height: variables.$navbar-height;
   width: 100%;
+  height: variables.$navbar-height;
+
+  transition-property: height, font-size;
+  transition-duration: 0.5s;
+  font-size: variables.$big-font-size;
 }
 
+#navbar-container.shrink
+{
+  height: 0.75 * variables.$navbar-height;
+  font-size: 0.75 * variables.$big-font-size !important;
+
+  transition-property: height, font-size;
+  transition-duration: 0.5s;
+  font-size: variables.$big-font-size;
+
+  #navbar-color
+  {
+    height: inherit;
+  }
+
+  .navbar-link
+  {
+    height: 0.75 * variables.$navbar-height;
+  }
+}
 
 #navbar-color
 {

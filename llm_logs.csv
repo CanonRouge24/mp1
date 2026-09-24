@@ -21,3 +21,108 @@ mq.addEventListener('change', disableTransition);
 A couple of google queries for various css properties and such (scrollbar-styling),
 about half of which resulted in looking at the MDN docs and half of which resulted in whatever Google search AI generated,
 which was probably from Stack Overflow. I also looked at SO for a question about how to use SASS math (@use 'sass:math')
+
+# IntersectionObserver with navbar
+
+## User
+
+with my current html setup, can I use intersectionobserver on the navbar and measure intersections with the three sections of the page (hero, about, contact), even if the navbar isn't an ancestor of these elements?
+
+## Assistant
+
+I'll check your HTML structure so the answer matches how your navbar and sections are actually laid out.
+
+### Tool Ripgrep Raw Search
+
+```
+{"pattern":"nav|hero|about|contact|header|section","path":"C:\\Max\\skool\\UIUC\\Fall 2026\\CS409 - Art of Web Programming\\mp1\\src\\index.html","caseInsensitive":true,"multiline":false,"toolCallId":"call-6b1b8941-61c0-4380-a188-f1ca73da1623-0\nfc_40ef8a50-8df0-9bfd-88c1-cb5c5e465512_0","offset":0}
+```
+
+### Tool Get Mcp Tools
+
+```
+{"server":"cursor","toolName":"WebSearch","toolCallId":"call-6b1b8941-61c0-4380-a188-f1ca73da1623-1\nfc_40ef8a50-8df0-9bfd-88c1-cb5c5e465512_1"}
+```
+
+### Tool Read File V2
+
+```
+{"path":"C:\\Max\\skool\\UIUC\\Fall 2026\\CS409 - Art of Web Programming\\mp1\\src\\index.html","offset":1,"limit":50}
+```
+
+### Tool Web Search
+
+```
+{"searchTerm":"IntersectionObserver root must be ancestor of target element MDN","toolCallId":"call-49f4b6b1-8b28-41d8-b176-bbeaf90d4780-3\nfc_6f88b528-f066-9964-8b5a-413a4973df2d_1"}
+```
+
+## Assistant
+
+**No — not with the navbar as the observer `root`.** Yes for the usual scrollspy pattern.
+
+In your markup, `#navbar` is a sibling of `#main`/`#content`, not an ancestor of `#hero-image`, `#content-container`, or `#contact-container`. IntersectionObserver only allows a custom `root` when the observed targets are **descendants** of that root. Using `#navbar` as `root` would fail (or be skipped) for those sections.
+
+What works instead:
+
+1. Observe the three sections with the **viewport** as root (`root: null` / omit `root`). Ancestry doesn’t matter.
+2. Update the navbar from the callback (e.g. highlight the matching link).
+3. Optionally use `rootMargin` (e.g. negative top/bottom) so “intersecting” means the section is in the band under the fixed nav, not “overlapping the navbar element itself.”
+
+IntersectionObserver never compares two arbitrary siblings; it only measures target vs root (or viewport). For nav highlighting, observe the sections, not the navbar.
+
+## User
+
+My intersection observer updates while the page loads and ends up in an incorrect state once the page finishes loading. How can I fix that?
+
+## Assistant
+
+I'll look at how your IntersectionObserver is set up and what runs on load so we can see why it settles into the wrong state.
+
+### Tool Ripgrep Raw Search
+
+```
+{"pattern":"IntersectionObserver|intersection|observe\\(","path":"C:\\Max\\skool\\UIUC\\Fall 2026\\CS409 - Art of Web Programming\\mp1\\src","caseInsensitive":false,"multiline":false,"toolCallId":"call-89aeaa50-d200-4846-8b0b-3667fbbc182e-4\nfc_bf5c371a-68f9-9dca-b3da-f7499056cfe9_0","offset":0}
+```
+
+### Tool Glob File Search
+
+```
+{"targetDirectory":"C:\\Max\\skool\\UIUC\\Fall 2026\\CS409 - Art of Web Programming\\mp1\\src","globPattern":"**/*.{js,ts}"}
+```
+
+### Tool Read File V2
+
+```
+{"path":"C:\\Max\\skool\\UIUC\\Fall 2026\\CS409 - Art of Web Programming\\mp1\\src\\js\\navbar-menu.js"}
+```
+
+### Tool Read File V2
+
+```
+{"path":"C:\\Max\\skool\\UIUC\\Fall 2026\\CS409 - Art of Web Programming\\mp1\\src\\index.js"}
+```
+
+### Tool Ripgrep Raw Search
+
+```
+{"pattern":"navbar|fixed|sticky|height|rootMargin","path":"C:\\Max\\skool\\UIUC\\Fall 2026\\CS409 - Art of Web Programming\\mp1\\src\\css","caseInsensitive":false,"multiline":false,"toolCallId":"call-3d5f72be-197d-46c7-ad8e-713dff7475a0-8\nfc_ee557c37-2431-99c4-aac1-ec28c49f230a_2","offset":0}
+```
+
+## Assistant
+
+The bug is in the observer callback: on first fire it gets entries for all three sections and the last one wins, even when it isn't intersecting. Fixing that by only treating intersecting sections as active.
+
+### Tool Edit File V2
+
+## Assistant
+
+The problem was in the callback, not timing.
+
+On first `observe()`, the browser delivers an entry for **every** section. Your loop treated each one as active and overwrote the highlight, so the **last entry in the batch** won — even when `isIntersecting` was `false`. That’s why Contact (or another section) could look selected after load while you’re still at the top.
+
+The fix:
+1. Only keep sections where `entry.isIntersecting` is true
+2. Highlight the one with the highest `intersectionRatio`
+3. Use multiple thresholds so ratio comparisons stay meaningful as you scroll
+
+If layout still shifts after images/fonts load and the highlight flickers once, you can also defer `observe()` until `window` `load` — but the `isIntersecting` check is what actually corrects the wrong final state.

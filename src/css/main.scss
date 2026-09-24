@@ -1,5 +1,6 @@
 /* Your SCSS here. */
 @use 'theme-colors';
+@use 'variables';
 
 html
 {
@@ -41,6 +42,8 @@ html
 
   margin: 0;
   padding: 0;
+
+  scroll-margin-top: variables.$navbar-height;
 }
 
 body
